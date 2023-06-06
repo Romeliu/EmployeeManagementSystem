@@ -7,6 +7,7 @@ namespace API.Services.Interfaces
         public void DeleteAssignmetAsync(Assignment assignment);
         Task<IEnumerable<Assignment>> GetAssignmentsAsync(bool completed, int employeeId);
         Task<Assignment> MarkCompleted(Assignment assignment);
-        Task<Assignment> AddAssignmentAsync(AssignmentDTO assignmentDTO, int EmployeeId);
+        Task<Assignment> AddAssignmentAsync(AssignmentDTO assignmentDTO, int employeeId);
+        Task<Assignment> GetByIdAsync(int id);
     }
 }

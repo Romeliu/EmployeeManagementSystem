@@ -20,9 +20,9 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Manager>> AddManager(ManagerDTO managerDTO)
+        public async Task<ActionResult<Manager>> AddManagerAsync(ManagerDTO managerDTO)
         {
-            return await _managerService.AddManagerAsync(managerDTO);
+            return Ok(await _managerService.AddManagerAsync(managerDTO));
         }
     }
 }

@@ -43,6 +43,11 @@ namespace API.Services
             return await _employeeRepository.GetAllAsync();
         }
 
+        public async Task<Employee> GetByIdAsync(int id)
+        {
+            return await _employeeRepository.GetByIdAsync(id);
+        }
+
         public async Task<IEnumerable<Employee>> GetEmployeesByNameAsync(string name)
         {
             return await _employeeRepository.GetWithNameAsync(name);

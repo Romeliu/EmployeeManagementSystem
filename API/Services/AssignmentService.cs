@@ -20,10 +20,11 @@ namespace API.Services
             _mapper = mapper;
         }
 
-        public async Task<Assignment> AddAssignmentAsync(AssignmentDTO assignmentDTO, int EmployeeId)
+        public async Task<Assignment> AddAssignmentAsync(AssignmentDTO assignmentDTO, int employeeId)
         {
             var assignment = _mapper.Map<Assignment>(assignmentDTO);
             assignment.Completed = false;
+            assignment.EmployeeId = employeeId;
             return await _assignmentRepository.AddAsync(assignment);
         }
 
@@ -35,6 +36,11 @@ namespace API.Services
         public async Task<IEnumerable<Assignment>> GetAssignmentsAsync(bool completed, int employeeId)
         {
            return await _assignmentRepository.GetAssignmentsAsync(completed, employeeId);
+        }
+
+        public async Task<Assignment> GetByIdAsync(int id)
+        {
+            return await _assignmentRepository.GetByIdAsync(id);
         }
 
         public async Task<Assignment> MarkCompleted(Assignment assignment)

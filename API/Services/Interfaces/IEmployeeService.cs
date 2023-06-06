@@ -10,5 +10,6 @@ namespace API.Services.Interfaces
         Task<IEnumerable<Employee>> GetAllAsync();
         void DeleteEmpoyeeAsync(Employee employee);
         void CheckInAsync(Employee employee, DateTime time);
+        Task<Employee> GetByIdAsync(int id);
     }
 }
