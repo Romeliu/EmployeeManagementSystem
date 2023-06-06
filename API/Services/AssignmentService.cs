@@ -45,7 +45,6 @@ namespace API.Services
 
         public async Task<Assignment> MarkCompleted(Assignment assignment)
         {
-            assignment.Completed = true;
             return await _assignmentRepository.UpdateAsync(assignment);
         }
 

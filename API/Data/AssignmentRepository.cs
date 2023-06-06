@@ -38,12 +38,12 @@ namespace API.Data
 
         public async Task<IEnumerable<Assignment>> GetAssignmentsAsync(bool completed, int employeeId)
         {
-            return await _context.Assignments.Where(u => (u.Completed  && u.EmployeeId == employeeId)).ToListAsync();
+            return await _context.Assignments.Where(u => (u.Completed == completed && u.EmployeeId == employeeId)).ToListAsync();
         }
 
         public async Task<Assignment> UpdateAsync(Assignment entity)
         {
-             _context.Assignments.Update(entity);
+            entity.Completed = true;
             await _context.SaveChangesAsync();
             return entity;
         }

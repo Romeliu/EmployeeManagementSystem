@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Authorize]
     public class ManagerController : BaseApiController
     {
         private readonly IManagerService _managerService;

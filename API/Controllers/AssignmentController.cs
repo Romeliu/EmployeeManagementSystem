@@ -38,7 +38,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("MarkAsComplete")]
         public async Task<ActionResult<Assignment>> MarkAsComplete(Assignment assignment)
         {
             var check = await _assignmentService.GetByIdAsync(assignment.Id);
@@ -49,26 +49,14 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("{completed}")]
-        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignments(Employee employee, bool completed)
+        [HttpGet("{completed}/{employeeId}")]
+        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignments(int employeeId, bool completed)
         {
-            var check = await _employeeService.GetByIdAsync(employee.Id);
+            var check = await _employeeService.GetByIdAsync(employeeId);
 
             if (check == null) return NotFound();
 
-            return Ok(await _assignmentService.GetAssignmentsAsync(completed, employee.Id));
+            return Ok(await _assignmentService.GetAssignmentsAsync(completed, employeeId));
         }
-
-        [HttpPost("finish")]
-        public async Task<ActionResult<IEnumerable<Assignment>>> FinishAssignment(Assignment assignment){
-            var check = await _assignmentService.GetByIdAsync(assignment.Id);
-
-            if (check == null) return NotFound();
-
-            await _assignmentService.MarkCompleted(assignment);
-
-            return Ok(await _assignmentService.GetAssignmentsAsync(true, assignment.EmployeeId));
-        }
-
     }
 }

@@ -41,6 +41,11 @@ namespace API.Data
             return await _context.Managers.FirstOrDefaultAsync(u => u.Id == id);
         }
 
+        public async Task<Manager> GetManagerByUsername(string name)
+        {
+            return await _context.Managers.Where(u => u.Username == name).FirstOrDefaultAsync();
+        }
+
         public async Task<Manager> UpdateAsync(Manager entity)
         {
             _context.Managers.Update(entity);

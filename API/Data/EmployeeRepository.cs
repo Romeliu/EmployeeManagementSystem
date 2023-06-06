@@ -58,10 +58,11 @@ namespace API.Data
 
         public async Task<IEnumerable<Employee>> GetWithNameAsync(string name)
         {
+            name = name.ToLower();
             return await _context.Employees
-                .Where(u => (u.Username.Contains(name)
-                    || u.Firstname.Contains(name)
-                    || u.Lastname.Contains(name)))
+                .Where(u => (u.Username.ToLower().Contains(name)
+                    || u.Firstname.ToLower().Contains(name)
+                    || u.Lastname.ToLower().Contains(name)))
                 .ToListAsync();
         }
 

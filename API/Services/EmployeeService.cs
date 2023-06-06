@@ -18,13 +18,14 @@ namespace API.Services
             _mapper = mapper;
         }
 
-        public async Task<Employee> AddEmployeeAsync(EmployeeDTO employeeDTO)
+        public async Task<Employee> AddEmployeeAsync(EmployeeDTO employeeDTO, int managerId)
         {
             var employee = _mapper.Map<Employee>(employeeDTO);
             employee.Username = employeeDTO.Username.ToLower();
             using var hmac = new HMACSHA512();
             employee.PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(employeeDTO.Password));
             employee.PasswordSalt = hmac.Key;
+            employee.ManagerId = managerId;
             return await _employeeRepository.AddAsync(employee);
         }
 

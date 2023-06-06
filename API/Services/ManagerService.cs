@@ -31,5 +31,10 @@ namespace API.Services
 
             return result;
         }
+
+        public async Task<Manager> GetManagerByUsername(string name)
+        {
+            return await _managerRepository.GetManagerByUsername(name);
+        }
     }
 }

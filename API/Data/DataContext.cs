@@ -15,5 +15,15 @@ namespace API.Data
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Assignment>()
+                .Ignore(a => a.Employee);
+            modelBuilder.Entity<Employee>()
+                .Ignore(a => a.Assignments)
+                .Ignore(a => a.Manager)
+                .Ignore(a => a.Loggers);
+        }
     }
 }

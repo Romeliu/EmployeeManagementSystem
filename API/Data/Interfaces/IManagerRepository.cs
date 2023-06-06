@@ -8,6 +8,6 @@ namespace API.Data.Interfaces
 {
     public interface IManagerRepository : IRepository<Manager>
     {
-        
+        public Task<Manager> GetManagerByUsername(string name);
     }
 }

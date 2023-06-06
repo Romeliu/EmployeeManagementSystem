@@ -6,5 +6,6 @@ namespace API.Services.Interfaces
     public interface IManagerService
     {
         public Task<Manager> AddManagerAsync(ManagerDTO manager);
+        Task<Manager> GetManagerByUsername(string name);
     }
 }

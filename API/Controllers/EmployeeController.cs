@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using API.Domain;
 using API.DTO;
+using API.Extensions;
 using API.Services.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -25,7 +23,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> AddEmployeeAsync(EmployeeDTO employeeDTO)
         {
-            return Ok(await _employeeService.AddEmployeeAsync(employeeDTO));
+            return Ok(await _employeeService.AddEmployeeAsync(employeeDTO, 1));
         }
 
         [HttpGet]
@@ -44,7 +42,7 @@ namespace API.Controllers
             return Ok(employee);
         }
 
-        [HttpGet("search/{id}")]
+        [HttpGet("search/{name}")]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeWithNameAsync(string name)
         {
             return Ok(await _employeeService.GetEmployeesByNameAsync(name));

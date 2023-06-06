@@ -1,5 +1,8 @@
 using API.Data;
 using API.Data.Interfaces;
+using API.Extensions;
+using API.Helpers;
+using API.Interfaces;
 using API.Services;
 using API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +32,10 @@ builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
 builder.Services.AddScoped<IManagerService, ManagerService>();
 builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
 
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+builder.Services.AddScoped<LogUserActivity>(); 
+builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 

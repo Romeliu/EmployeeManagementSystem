@@ -5,7 +5,7 @@ namespace API.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<Employee> AddEmployeeAsync(EmployeeDTO employeeDTO);
+        Task<Employee> AddEmployeeAsync(EmployeeDTO employeeDTO, int managerId);
         Task<IEnumerable<Employee>> GetEmployeesByNameAsync(string name);
         Task<IEnumerable<Employee>> GetAllAsync();
         void DeleteEmpoyeeAsync(Employee employee);
